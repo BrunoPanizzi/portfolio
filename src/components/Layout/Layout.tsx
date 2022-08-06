@@ -5,7 +5,9 @@ import Item from '../Item'
 export default function Layout() {
   return (
     <Container>
-      <Item area="main" />
+      <Item area="main">
+        <p>this is the content</p>
+      </Item>
       <Item area="aaaa" />
       <Item area="bbbb" />
       <Item area="cccc" />

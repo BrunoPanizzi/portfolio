@@ -4,6 +4,7 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
+  background: hsl(0deg, 0%, 80%);
   display: grid;
   grid-template-rows: repeat(10, 1fr);
   grid-template-columns: repeat(10, 1fr);

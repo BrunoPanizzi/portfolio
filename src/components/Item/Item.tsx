@@ -7,6 +7,7 @@ import getWindowDimensions from '../../utils/getWindowDimensions'
 import { AbsoluteContainer, Container, Overlay } from './styles'
 
 import { dimension } from './types'
+import { AnimatePresence } from 'framer-motion'
 
 export interface props {
   area: string
@@ -89,13 +90,18 @@ export default function Item({ area, children }: props) {
         {children}
       </AbsoluteContainer>
 
+      <AnimatePresence>
       {isOpen && (
         <Overlay
           transition={{ type: 'tween' }}
-          animate={{ background: 'rgba(0,0,0,0.3)' }}
+          style={{ background: 'black'}}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          exit={{ opacity: 0 }}
           onClick={() => setIsOpen(false)}
         />
       )}
+      </AnimatePresence>
     </>
   )
 }

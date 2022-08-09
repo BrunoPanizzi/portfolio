@@ -6,9 +6,9 @@ export default function Layout() {
   return (
     <Container>
       <Item area="main">
-        <p>this is the content</p>
+        <h1>Lorem ipsum dolor sit amet consectetur elit. Eligendi</h1>
       </Item>
-      <Item area="aaaa" />
+      <Item area="aaaa" topComponent={<h2>something something</h2>} />
       <Item area="bbbb" />
       <Item area="cccc" />
       <Item area="dddd" />

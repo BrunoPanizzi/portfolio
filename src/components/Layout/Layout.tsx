@@ -8,7 +8,15 @@ export default function Layout() {
       <Item area="main">
         <h1>Lorem ipsum dolor sit amet consectetur elit. Eligendi</h1>
       </Item>
-      <Item area="aaaa" topComponent={<h2>something something</h2>} />
+      <Item
+        area="aaaa"
+        topComponent={<h2>something something</h2>}
+        bottomComponent={
+          <h3>more content in here too look this is a footer!</h3>
+        }
+      >
+        <h1>hello this is the middle component</h1>
+      </Item>
       <Item area="bbbb" />
       <Item area="cccc" />
       <Item area="dddd" />

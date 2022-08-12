@@ -1,15 +1,22 @@
-import React, { useState, useLayoutEffect, useRef, useMemo } from 'react'
+import React, {
+  useState,
+  useLayoutEffect,
+  useRef,
+  useMemo,
+  CSSProperties,
+} from 'react'
 
 import delay from '../../utils/delay'
 import randomNumber from '../../utils/randomNumber'
 import getWindowDimensions from '../../utils/getWindowDimensions'
 
-import { AbsoluteContainer, Container } from './styles'
+import { AbsoluteContainer } from './styles'
 
 import { dimension } from './types'
 
 interface props {
   area: string
+  style?: CSSProperties
   children: React.ReactNode
   isOpen: boolean
   onClick: () => void
@@ -17,6 +24,7 @@ interface props {
 
 export default function PositionInGrid({
   area,
+  style,
   children,
   isOpen,
   onClick,
@@ -49,12 +57,13 @@ export default function PositionInGrid({
   }, [])
 
   if (loading) {
-    return <Container style={{ gridArea: area }} ref={containerRef} />
+    return <div style={{ gridArea: area }} ref={containerRef} />
   }
   return (
     <AbsoluteContainer
       onClick={onClick}
       transition={transition}
+      style={style}
       initial={['closed', 'hidden']}
       animate={['visible', isOpen ? 'open' : 'closed']}
       variants={{

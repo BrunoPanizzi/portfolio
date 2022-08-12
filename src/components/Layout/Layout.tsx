@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 import { Container } from './styles'
 
 import Item from '../Item'
@@ -5,9 +7,22 @@ import Item from '../Item'
 export default function Layout() {
   return (
     <Container>
-      <Item area="main">
-        <h1>Lorem ipsum dolor sit amet consectetur elit. Eligendi</h1>
+      <Item
+        area="main"
+        style={{
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+          paddingInline: 32,
+        }}
+      >
+        <MainContent>
+          <span>Olá! Eu sou</span>
+          <h1>Bruno Panizzi</h1>
+          <span>e esse é meu portifólio</span>
+        </MainContent>
+        <MainContent>Clique nos cards e descubra mais!</MainContent>
       </Item>
+
       <Item
         area="aaaa"
         topComponent={<h2>something something</h2>}
@@ -47,3 +62,14 @@ export default function Layout() {
     </Container>
   )
 }
+
+const MainContent = styled.div`
+  font-size: 2rem;
+  font-weight: 600;
+
+  h1 {
+    font-size: 1.75em;
+    font-weight: 700;
+    font-family: 'Inconsolata', monospace;
+  }
+`

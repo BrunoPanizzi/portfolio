@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { CSSProperties, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
 import { Overlay } from './styles'
@@ -6,6 +6,7 @@ import PositionInGrid from './PositionInGrid'
 
 export interface props {
   area: string
+  style?: CSSProperties
   children?: React.ReactNode
   topComponent?: React.ReactNode
   bottomComponent?: React.ReactNode
@@ -13,6 +14,7 @@ export interface props {
 
 export default function Item({
   area,
+  style,
   children,
   topComponent,
   bottomComponent,
@@ -25,6 +27,7 @@ export default function Item({
         area={area}
         onClick={() => setIsOpen(true)}
         isOpen={isOpen}
+        style={style}
       >
         {isOpen && topComponent}
         {children}

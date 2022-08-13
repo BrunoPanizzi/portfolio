@@ -27,7 +27,7 @@ export default function Item({
         area={area}
         onClick={() => setIsOpen(true)}
         isOpen={isOpen}
-        style={style}
+        style={{ display: 'flex', flexDirection: 'column', ...style }}
       >
         {isOpen && topComponent}
         {children}

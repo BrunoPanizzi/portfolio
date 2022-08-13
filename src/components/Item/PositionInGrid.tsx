@@ -5,6 +5,7 @@ import React, {
   useMemo,
   CSSProperties,
 } from 'react'
+import { motion, useTime, useTransform, useMotionTemplate } from 'framer-motion'
 
 import delay from '../../utils/delay'
 import randomNumber from '../../utils/randomNumber'
@@ -22,6 +23,7 @@ interface props {
   onClick: () => void
 }
 
+const borderWidth = 5
 export default function PositionInGrid({
   area,
   style,
@@ -29,6 +31,10 @@ export default function PositionInGrid({
   isOpen,
   onClick,
 }: props) {
+  const time = useTime()
+  const rotate = useTransform(time, [0, 7000], [0, 360], { clamp: false })
+  const background = useMotionTemplate`linear-gradient(${rotate}deg, rgba(70,212,207,1) 0%, rgba(204,29,253,1) 63%, rgba(252,176,69,1) 100%)`
+
   const [loading, setLoading] = useState(true)
   const [dimensions, setDimensions] = useState<dimension>()
 
@@ -61,10 +67,11 @@ export default function PositionInGrid({
   }
   return (
     <AbsoluteContainer
-      onClick={onClick}
       transition={transition}
-      style={style}
-      initial={['closed', 'hidden']}
+      style={{
+        backgroundImage: background,
+      }}
+      initial={['hidden', 'closed']}
       animate={['visible', isOpen ? 'open' : 'closed']}
       variants={{
         hidden: {
@@ -78,6 +85,7 @@ export default function PositionInGrid({
         open: {
           ...modalPos,
           zIndex: 2,
+          padding: borderWidth,
         },
         closed: {
           ...dimensions,
@@ -91,23 +99,36 @@ export default function PositionInGrid({
         },
       }}
     >
-      {children}
+      <motion.div
+        style={{
+          background: 'white',
+          width: '100%',
+          height: '100%',
+          padding: '1rem',
+          borderRadius: 'inherit',
+
+          ...style,
+        }}
+        onClick={onClick}
+      >
+        {children}
+      </motion.div>
     </AbsoluteContainer>
   )
 }
 
 // helper function
 
-function getModalPos(): dimension {
+function getModalPos() {
   const { width, height } = getWindowDimensions()
 
-  const modalSize = { width: Math.min(width * 0.8, 700), height: height * 0.8 }
-  const modalOrigin = {
-    x: width / 2 - modalSize.width / 2,
-    y: height / 2 - modalSize.height / 2,
+  const size = { width: Math.min(width * 0.8, 700), height: height * 0.8 }
+  const origin = {
+    x: width / 2 - size.width / 2,
+    y: height / 2 - size.height / 2,
   }
 
-  return { ...modalSize, ...modalOrigin }
+  return { ...size, ...origin }
 }
 
 const transition = {

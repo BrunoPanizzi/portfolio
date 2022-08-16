@@ -4,6 +4,9 @@ import github from '../../assets/images/GitHub_Logo.png'
 import linkedin from '../../assets/images/linkedin.png'
 import dark from '../../assets/images/darkMode.svg'
 import light from '../../assets/images/lightMode.svg'
+import jstack from '../../assets/images/jstack.svg'
+import br from '../../assets/images/brFlag.svg'
+import us from '../../assets/images/usFlag.svg'
 
 import { Container } from './styles'
 
@@ -117,10 +120,79 @@ export default function Layout() {
         <img src={linkedin} style={{ height: 'min(90%, 5rem)' }} />
       </Item>
       <Item area="oooo">asdfk</Item>
-      <Item area="pppp">alksjdf</Item>
+      <Item
+        area="pppp"
+        style={{ justifyContent: 'center', alignItems: 'center', padding: 8 }}
+        topComponent={
+          <h3
+            style={{ fontSize: 22, fontWeight: 500, marginBlockEnd: '1.5rem' }}
+          >
+            Atual: <strong>português</strong>
+          </h3>
+        }
+        bottomComponent={
+          <h3
+            style={{
+              fontSize: 22,
+              fontWeight: 500,
+              marginBlockStart: '1.5rem',
+            }}
+          >
+            Para mudar de linguagem clique na bandeira
+          </h3>
+        }
+      >
+        {
+          <div style={{ height: 'min(100%, 5rem)', aspectRatio: '4 / 3' }}>
+            <img
+              src={'br' === 'br' ? br : us}
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: 6,
+              }}
+            />
+          </div>
+        }
+      </Item>
       <Item area="qqqq" />
       <Item area="rrrr" />
-      <Item area="ssss">ksjdfkjd</Item>
+      <Item
+        area="ssss"
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingBlock: 8,
+          paddingInline: '15%',
+        }}
+        bottomComponent={
+          <>
+            <p style={{ fontSize: '1.25rem', paddingBlockStart: '1.5rem' }}>
+              O JStack é um curso para desenvolvedores fullstack, nele trata-se
+              de diversas tecnologias como React, NodeJS, express, Postgress,
+              Next, entre outras.
+            </p>
+            <p
+              style={{
+                fontSize: '1.25rem',
+                width: '100%',
+                paddingBlockStart: '1rem',
+              }}
+            >
+              Para mais informações acesse o link do{' '}
+              <a href="https://jstack.com.br/">JStack</a>{' '}
+            </p>
+          </>
+        }
+      >
+        <img
+          src={jstack}
+          alt="Jstack"
+          style={{
+            height: 'min(5rem, 100%)',
+          }}
+        />
+      </Item>
       <Item area="tttt" />
       <Item area="uuuu" />
       <Item area="vvvv" />

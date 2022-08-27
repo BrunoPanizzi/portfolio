@@ -6,7 +6,8 @@ import PositionInGrid from './PositionInGrid'
 
 export interface props {
   area: string
-  style?: CSSProperties
+  doesOpen?: boolean
+  style?: CSSProperties | ((isOpen: boolean) => CSSProperties)
   children?: React.ReactNode
   topComponent?: React.ReactNode
   bottomComponent?: React.ReactNode
@@ -14,6 +15,7 @@ export interface props {
 
 export default function Item({
   area,
+  doesOpen = true,
   style,
   children,
   topComponent,
@@ -21,13 +23,19 @@ export default function Item({
 }: props) {
   const [isOpen, setIsOpen] = useState(false)
 
+  const finalStyles = typeof style === 'function' ? style(isOpen) : style
+
+  const handleToggleOpen = (value: boolean) => {
+    doesOpen && setIsOpen(value)
+  }
+
   return (
     <>
       <PositionInGrid
         area={area}
-        onClick={() => setIsOpen(true)}
+        onClick={() => handleToggleOpen(true)}
         isOpen={isOpen}
-        style={{ display: 'flex', flexDirection: 'column', ...style }}
+        style={{ display: 'flex', flexDirection: 'column', ...finalStyles }}
       >
         {isOpen && topComponent}
         {children}
@@ -42,7 +50,7 @@ export default function Item({
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
+            onClick={() => handleToggleOpen(false)}
           />
         )}
       </AnimatePresence>

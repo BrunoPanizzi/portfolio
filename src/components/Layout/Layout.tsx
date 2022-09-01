@@ -7,6 +7,7 @@ import light from '../../assets/images/lightMode.svg'
 import jstack from '../../assets/images/jstack.svg'
 import br from '../../assets/images/brFlag.svg'
 import us from '../../assets/images/usFlag.svg'
+import MyContactsLogo from '../../assets/images/MyContacts.svg'
 
 import { Container } from './styles'
 
@@ -33,12 +34,17 @@ export default function Layout() {
 
       <Item
         area="aaaa"
-        topComponent={<h2>something something</h2>}
-        bottomComponent={
-          <h3>more content in here too look this is a footer!</h3>
-        }
+        doesOpen={false}
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+        }}
       >
-        <h1>hello this is the middle component</h1>
+        <h2>
+          Não gostou do estilo do site? Aqui está meu{' '}
+          <a href="https://youtube.com">currículo.</a>
+        </h2>
       </Item>
       <Item area="bbbb" />
       <Item area="cccc" />
@@ -200,7 +206,51 @@ export default function Layout() {
       <Item area="xxxx">alskdjlkdjf</Item>
       <Item area="yyyy" />
       <Item area="zzzz" />
-      <Item area="aaa1" />
+      <Item
+        area="aaa1"
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingBlock: 6,
+          gap: 32,
+        }}
+        bottomComponent={
+          <div
+            style={{
+              maxWidth: '90%',
+              fontSize: 18,
+              lineHeight: 1.5,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}
+          >
+            <p>
+              O MyContacts é um projeto desenvolvido no curso JStack. A
+              interface foi desenvolvida com React e styledComponents; já o
+              backend é uma API rest em JavaScript feita com Express e Postgress
+              para o banco de dados.
+            </p>
+            <p>
+              No app você pode criar, editar e excluir contatos, além de poder
+              pesquisar entre seus contatos pelo nome e ainda escolher entre
+              ordem alfabética ascendente ou descendente.
+            </p>
+            <p>
+              Para acessar o site finalizado, segue o link: ainda não
+              disponivel.
+            </p>
+            <p>
+              O código fonte do projeto, frontend e backend:{' '}
+              <a href="https://github.com/BrunoPanizzi/MyContactsFront">
+                github
+              </a>
+            </p>
+          </div>
+        }
+      >
+        <img src={MyContactsLogo} style={{ height: 'min(80%, 4rem)' }} />
+      </Item>
       <Item area="aaa2" />
     </Container>
   )

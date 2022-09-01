@@ -17,7 +17,7 @@ import { dimension } from './types'
 
 interface props {
   area: string
-  style?: CSSProperties
+  style: CSSProperties
   children: React.ReactNode
   isOpen: boolean
   onClick: () => void
